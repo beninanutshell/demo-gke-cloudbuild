@@ -26,5 +26,6 @@ kind: Target
 metadata:
   name: production
 description: Production Environment
+requireApproval: true
 gke:
   cluster: projects/test-ahn-dev/locations/europe-west1/clusters/bc-ilb-poc
