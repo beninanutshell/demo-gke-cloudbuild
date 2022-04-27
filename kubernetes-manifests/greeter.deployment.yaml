@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: greeter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: greeter
+  template:
+    metadata:
+      labels:
+        app: greeter
+    spec:
+      containers:
+        - name: greeter
+          image: europe-west1-docker.pkg.dev/test-ahn-dev/s4a-shared-docker-registry/node-gke-microservice-greeter
+          ports:
+            - containerPort: 3000
+          env:
+            - name: PORT
+              value: "3000"
