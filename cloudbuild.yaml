@@ -26,5 +26,5 @@ steps:
 
 images:
   - 'europe-west1-docker.pkg.dev/$PROJECT_ID/s4a-shared-docker-registry/node-gke-microservice-api'
-  - 'europe-west1-docker.pkg.dev/$PROJECT_ID/s4a-shared-docker-registry/node-gke-microservice-greeter'
+  - 'europe-west1-docker.pkg.dev/$PROJECT_ID/s4a-shared-docker-registry/node-gke-microservice-fruit'
   - 'europe-west1-docker.pkg.dev/$PROJECT_ID/s4a-shared-docker-registry/node-gke-microservice-greeter'
