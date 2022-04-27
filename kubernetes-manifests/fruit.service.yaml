@@ -4,7 +4,6 @@ metadata:
   labels:
     app: fruit
   name: fruit
-  namespace: default
 spec:
   type: NodePort
   selector:

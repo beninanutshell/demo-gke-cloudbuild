@@ -4,7 +4,6 @@ metadata:
   labels:
     app: greeter
   name: greeter
-  namespace: default
 spec:
   type: NodePort
   selector:

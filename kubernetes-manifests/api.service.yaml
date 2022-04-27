@@ -4,7 +4,6 @@ metadata:
   labels:
     run: api
   name: api
-  namespace: default
 spec:
   type: LoadBalancer
   selector:
