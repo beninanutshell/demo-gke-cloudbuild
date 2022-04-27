@@ -1,9 +1,20 @@
 steps:
-# - name: 'gcr.io/k8s-skaffold/pack'
-#   entrypoint: 'pack'
-#   args: ['build', '--builder=gcr.io/buildpacks/builder', '--publish', 'europe-west1-docker.pkg.dev/$PROJECT_ID/s4a-shared-docker-registry/hello-world:$SHORT_SHA']
+- id  : build API microservice
+  waitFor : ['-']
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'europe-west1-docker.pkg.dev/$PROJECT_ID/s4a-shared-docker-registry/node-gke-microservice-api', 'src/api']
+- id  : build FRUIT microservice
+  waitFor : ['-']
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'europe-west1-docker.pkg.dev/$PROJECT_ID/s4a-shared-docker-registry/node-gke-microservice-fruit', 'src/fruitService']
+- id  : build GREETER microservice
+  waitFor : ['-']
+  name: 'gcr.io/cloud-builders/docker'
+  args: ['build', '-t', 'europe-west1-docker.pkg.dev/$PROJECT_ID/s4a-shared-docker-registry/node-gke-microservice-greeter', 'src/greeterService']
 
-- name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
+- id  : Create release
+  waitFor : ['build API microservice', 'build FRUIT microservice', 'build GREETER microservice']
+  name: 'gcr.io/google.com/cloudsdktool/cloud-sdk'
   entrypoint: 'bash'
   args:
   - '-c'
@@ -12,3 +23,8 @@ steps:
     --delivery-pipeline=hello-world-app
     --region=europe-west1
     --source=./
+
+images:
+  - 'europe-west1-docker.pkg.dev/$PROJECT_ID/s4a-shared-docker-registry/node-gke-microservice-api'
+  - 'europe-west1-docker.pkg.dev/$PROJECT_ID/s4a-shared-docker-registry/node-gke-microservice-greeter'
+  - 'europe-west1-docker.pkg.dev/$PROJECT_ID/s4a-shared-docker-registry/node-gke-microservice-greeter'
