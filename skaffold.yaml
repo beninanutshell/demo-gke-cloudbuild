@@ -5,11 +5,11 @@ build:
     sha256: {}
   artifacts:
     - context: src/api
-      image: europe-west1-docker.pkg.dev/$PROJECT_ID/s4a-shared-docker-registry/node-gke-microservice-api
+      image: europe-west1-docker.pkg.dev/test-ahn-dev/s4a-shared-docker-registry/node-gke-microservice-api
     - context: src/fruitService
-      image: europe-west1-docker.pkg.dev/$PROJECT_ID/s4a-shared-docker-registry/node-gke-microservice-fruit
+      image: europe-west1-docker.pkg.dev/test-ahn-dev/s4a-shared-docker-registry/node-gke-microservice-fruit
     - context: src/greeterService
-      image: europe-west1-docker.pkg.dev/$PROJECT_ID/s4a-shared-docker-registry/node-gke-microservice-greeter
+      image: europe-west1-docker.pkg.dev/test-ahn-dev/s4a-shared-docker-registry/node-gke-microservice-greeter
 
 profiles:
   - name: cloudbuild
