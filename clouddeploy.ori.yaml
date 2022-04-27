@@ -6,12 +6,23 @@ metadata:
 description: Hello World Deployment Pipeline
 serialPipeline:
   stages:
+  - targetId: build
+    profiles:
+     - cloudbuild
   - targetId: staging
     profiles:
      - staging
   - targetId: production
     profiles:
      - production
+---
+apiVersion: deploy.cloud.google.com/v1beta1
+kind: Target
+metadata:
+  name: build
+description: Build Environment
+gke:
+  cluster: projects/test-ahn-dev/locations/europe-west1/clusters/skaffold-gke-poc
 ---
 apiVersion: deploy.cloud.google.com/v1beta1
 kind: Target
